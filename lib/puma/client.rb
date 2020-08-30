@@ -295,6 +295,9 @@ module Puma
         raise ConnectionError, "Connection error detected during read"
       end
 
+      pp "http request///////////"
+      pp data
+      pp "http request///////////"
       # No data means a closed socket
       unless data
         @buffer = nil
