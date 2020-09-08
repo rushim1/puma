@@ -295,9 +295,6 @@ module Puma
         raise ConnectionError, "Connection error detected during read"
       end
 
-      pp "http request///////////"
-      pp data
-      pp "http request///////////"
       # No data means a closed socket
       unless data
         @buffer = nil
@@ -315,6 +312,9 @@ module Puma
       @parsed_bytes = @parser.execute(@env, @buffer, @parsed_bytes)
 
       if @parser.finished?
+        pp "\nhttp request///////////"
+        pp @buffer
+        pp "http request///////////\n"
         return setup_body
       elsif @parsed_bytes >= MAX_HEADER
         raise HttpParserError,
